@@ -4,8 +4,12 @@ import { ListProductsComponent } from './list-products/list-products.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ProductFilterPipe } from './product-filter.pipe';
+import { RouterModule, Routes } from '@angular/router';
 
-
+//Defined the router-view (component) mapping
+const routes: Routes = [
+  {path: "products", component: ListProductsComponent}
+]
 
 @NgModule({
   declarations: [
@@ -15,7 +19,8 @@ import { ProductFilterPipe } from './product-filter.pipe';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   exports: [ListProductsComponent]
 })
