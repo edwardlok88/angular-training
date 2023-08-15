@@ -1,0 +1,37 @@
+<h3>Data Binding Examples</h3>
+
+<div>
+    <h2>Template variable</h2>
+    Show/Hide: <input type="checkbox" #var1 [ngModel]/>
+    {{var1}} {{var1.checked}}
+</div>
+<br/>
+<br/>
+<div [hidden]="!var1.checked">
+    <div>
+        Name: {{name}}
+    </div>
+    <div>
+        <h2>Interpolation</h2>
+        Expression: {{5 + 7}}
+    </div>
+    <div>
+        <h2>Property binding</h2>
+        Count: <input type="number" [value]="count" />
+        <p>{{count}}</p>
+    </div>
+    <div>
+        <h2>Event binding</h2>
+        <button (click)="inc($event)">Increment</button>
+    </div>
+    <div>
+        <h2>Two way binding using ngModel</h2>
+        Message: <input [(ngModel)]="message" />
+        <p>{{message}}</p>
+    </div>
+    <div>
+        <h2>Two way binding custom</h2>
+        Count: <input type="number" [value]="count" (input)="update($event)" />
+        <p>{{count}}</p>
+    </div>
+</div>

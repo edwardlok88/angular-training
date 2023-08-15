@@ -1,0 +1,52 @@
+<p>list-products works!</p>
+<h4>List products</h4>
+
+<div>
+    <input type="search" placeholder="Search Products" [(ngModel)]="searchKey"/>
+</div>
+<p *ngIf="searchKey">
+    Search results for {{searchKey}}
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Product Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Iterate over data and create tr for each product -->
+        <tr *ngFor="let item of data; index as i; even as even; odd as odd"
+            [ngClass]="{oddCls: odd, evenCls: even}">
+            <td>{{i}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name | uppercase}}</td>
+            <td>{{item.price | currency: "RM"}}</td>
+            <td>{{item.description}}</td>
+            <td>
+                <button (click)="deleteProduct(item)">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="saveProduct()">Save</button>
+            </td>
+            <td>
+                <input type="number" placeholder="Id" [(ngModel)]="nProduct.id">
+            </td>
+            <td>
+                <input placeholder="Name" [(ngModel)]="nProduct.name">
+            </td>
+            <td>
+                <input placeholder="Price" [(ngModel)]="nProduct.price">
+            </td>
+            <td>
+                <input placeholder="Description" [(ngModel)]="nProduct.description">
+            </td>
+        </tr>
+
+    </tbody>
+</table>
