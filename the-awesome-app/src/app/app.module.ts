@@ -8,6 +8,7 @@ import { DataBindingComponent } from './databinding/databinding.component';
 import { ProductsModule } from './products/products.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewNotFoundComponent } from './view-not-found/view-not-found.component';
+import { GadgetsModule } from './gadgets/gadgets.module';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     ProductsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    GadgetsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
