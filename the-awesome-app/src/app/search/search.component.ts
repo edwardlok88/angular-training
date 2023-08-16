@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { interval } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { filter, map, take, tap, debounceTime } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -12,6 +12,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class SearchComponent {
 
   public formGroup: FormGroup;
+  public results: Array<string> = [];
+  public results$!: Observable<Array<string>>;
 
   constructor(private httpClient: HttpClient) {
     //interval create an observable with an infinite sequence of numbers
@@ -44,14 +46,30 @@ export class SearchComponent {
         // console.log("input", input);
         const url = "https://en.wikipedia.org/w/api.php";
         const params = new HttpParams()
-                          .set("action", "opensearch")
-                          .set("limit", 20)
-                          .set("origin", "*")
-                          .set("search", input);
-        httpClient.get(url, {params})
-                  .subscribe((data) => {
-                    console.log(data);
-                  })
+          .set("action", "opensearch")
+          .set("limit", 20)
+          .set("origin", "*")
+          .set("search", input);
+        // observe: response to observe the response message
+        // httpClient.get(url, {params, observe: 'response'})
+        //           .subscribe((data) => {
+        //             console.log(data);
+        //           })
+
+        httpClient.get<Array<any>>(url, { params, observe: 'body' })
+          .pipe(
+            map(data => data[1])
+          )
+          .subscribe((data) => {
+            console.log(data);
+            this.results = data;
+          })
+
+        // observable subscribe in html
+        this.results$ = httpClient.get<Array<any>>(url, { params, observe: 'body' })
+          .pipe(
+            map(data => data[1])
+          )
       })
   }
 }

@@ -3,3 +3,11 @@
 <div [formGroup]="formGroup">
     <input type="search" placeholder="Wiki Search" formControlName="search"/>
 </div>
+
+<!-- <div *ngFor="let item of results">
+    <p>{{item}}</p>
+</div> -->
+
+<div *ngFor="let item of results$ | async">
+    <p>{{item}}</p>
+</div>
