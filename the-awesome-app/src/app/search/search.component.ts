@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, interval } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, interval } from 'rxjs';
 import { filter, map, take, tap, debounceTime } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -28,9 +28,9 @@ export class SearchComponent {
         // }),
         map(v => v * v)
       )
-      .subscribe((result) => {
-        console.log("in subscribe", result); // output
-      });
+      // .subscribe((result) => {
+      //   console.log("in subscribe", result); // output
+      // });
 
     this.formGroup = new FormGroup({
       search: new FormControl("", [], [])
@@ -71,5 +71,24 @@ export class SearchComponent {
             map(data => data[1])
           )
       })
+
+      // const subject = new Subject<number>();
+      // const subject = new ReplaySubject<number>();
+      const subject = new BehaviorSubject<number>(0);
+
+      subject.subscribe((result) => {
+        console.log("subscriber #1", result)
+      });
+
+      subject.next(10);
+      subject.next(20);
+      subject.next(30);
+
+      subject.subscribe((result) => {
+        console.log("subscriber #2", result)
+      });
+
+      subject.next(40);
+      subject.next(50);
   }
 }

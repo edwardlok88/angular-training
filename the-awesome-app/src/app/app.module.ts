@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
+import { UserService } from './services/user-service';
+import { UserServiceImpl } from './services/user-service-impl';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -43,7 +45,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  //singleton service provider
+  providers: [{provide: UserService, useClass: UserServiceImpl}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
