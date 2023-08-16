@@ -10,12 +10,16 @@
         <!-- FormControl(provided we are using ngmodel) -->
         <!-- need to provide unique name for FormControl-->
         <input name="productName" class="form-control" placeholder="Name"  [(ngModel)]="product.name" required #nameControl="ngModel"/>
+        <!-- use ngIf handle to change element attributes-->
         <div *ngIf="nameControl.invalid" class="alert alert-danger">The field is required</div>
     </div>
     <div class="form-group">
         <label>Price</label>
         <!-- FormControl -->
-        <input name="productPrice" class="form-control" placeholder="Price"  [(ngModel)]="product.price"/>
+        <input name="productPrice" type="number" class="form-control" placeholder="Price"  [(ngModel)]="product.price" required min="100" #priceControl="ngModel"/>
+        <!-- use hasError to access specific errors -->
+        <div *ngIf="priceControl.hasError('required')" class="alert alert-danger">The field is required</div>
+        <div *ngIf="priceControl.hasError('min')" class="alert alert-danger">The field value should be 100 or more</div>
     </div>
     <div class="form-group">
         <label>Description</label>
@@ -24,8 +28,8 @@
     </div>
     <br/>
     <div class="form-group">
-        <button class="btn btn-success" [disabled]="formGroup.pristine || formGroup.invalid">Save</button>
+        <button class="btn btn-success" (click)="saveEdit()" [disabled]="formGroup.pristine || formGroup.invalid">Save</button>
         &nbsp;
-        <button class="btn btn-info">Cancel</button>
+        <button class="btn btn-info" (click)="cancelEdit()">Cancel</button>
     </div>
 </form>

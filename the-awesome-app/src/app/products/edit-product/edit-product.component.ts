@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Product } from 'src/app/model/product';
 
 @Component({
@@ -13,7 +14,7 @@ export class EditProductComponent {
   public productId: number = 0;
   public product: Product = new Product();
 
-  constructor(private activatedRoute: ActivatedRoute, httpClient: HttpClient) {
+  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private location: Location) {
     this.productId = activatedRoute.snapshot.params["id"];
     const url = "http://localhost:9000/products/" + this.productId;
     httpClient.get(url)
@@ -25,5 +26,24 @@ export class EditProductComponent {
                   alert("Cannot read record..")
                 }
               })
+  }
+
+  cancelEdit() {
+    this.location.back();
+  }
+
+  saveEdit() {
+    const url = "http://localhost:9000/products/" + this.productId;
+    this.httpClient.put(url, this.product)
+      .subscribe({
+        next: () => {
+          alert("Product updated");
+          this.product = new Product();
+          this.location.back();
+          },
+        error: () => {
+          alert("Failed to update Product")
+          }
+      });
   }
 }
