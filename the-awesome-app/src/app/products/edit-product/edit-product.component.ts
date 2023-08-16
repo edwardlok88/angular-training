@@ -13,10 +13,11 @@ export class EditProductComponent {
 
   public productId: number = 0;
   public product: Product = new Product();
+  private url = "http://localhost:9000/products/"
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private location: Location) {
     this.productId = activatedRoute.snapshot.params["id"];
-    const url = "http://localhost:9000/products/" + this.productId;
+    const url = this.url + this.productId;
     httpClient.get(url)
               .subscribe({
                 next: (data => {
@@ -33,7 +34,7 @@ export class EditProductComponent {
   }
 
   saveEdit() {
-    const url = "http://localhost:9000/products/" + this.productId;
+    const url = this.url + this.productId;
     this.httpClient.put(url, this.product)
       .subscribe({
         next: () => {
