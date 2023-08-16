@@ -9,12 +9,17 @@ import { ProductsModule } from './products/products.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ViewNotFoundComponent } from './view-not-found/view-not-found.component';
 import { GadgetsModule } from './gadgets/gadgets.module';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "home", component: HelloComponent},
   {path: "databinding", component: DataBindingComponent},
+  {path: "login", component: LoginComponent},
+  {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "**", component: ViewNotFoundComponent}
 ]
 
@@ -23,14 +28,17 @@ const routes: Routes = [
     AppComponent,
     HelloComponent,
     DataBindingComponent,
-    ViewNotFoundComponent
+    ViewNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ProductsModule,
     RouterModule.forRoot(routes),
-    GadgetsModule
+    GadgetsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
