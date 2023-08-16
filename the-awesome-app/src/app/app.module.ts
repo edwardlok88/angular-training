@@ -12,6 +12,7 @@ import { GadgetsModule } from './gadgets/gadgets.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchComponent } from './search/search.component';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: "home", component: HelloComponent},
   {path: "databinding", component: DataBindingComponent},
   {path: "login", component: LoginComponent},
+  {path: "search", component: SearchComponent},
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "**", component: ViewNotFoundComponent}
 ]
@@ -29,7 +31,8 @@ const routes: Routes = [
     HelloComponent,
     DataBindingComponent,
     ViewNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
