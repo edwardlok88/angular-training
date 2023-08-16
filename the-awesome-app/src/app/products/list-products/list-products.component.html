@@ -12,7 +12,6 @@
         <tr>
             <th>Index</th>
             <th>Product Id</th>
-            <th>Images</th>
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
@@ -24,7 +23,6 @@
             [ngClass]="{oddCls: odd, evenCls: even}">
             <td>{{i}}</td>
             <td>{{item.id}}</td>
-            <td><img src="{{item.imageUrl}}"></td>
             <td>{{item.name | uppercase}}</td>
             <td>{{item.price | currency: "RM"}}</td>
             <td>{{item.description}}</td>
