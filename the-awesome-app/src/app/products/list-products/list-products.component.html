@@ -29,7 +29,9 @@
             <td>{{item.price | currency: "RM"}}</td>
             <td>{{item.description}}</td>
             <td>
-                <button (click)="deleteProduct(item)">Delete</button>
+                <button class="btn btn-danger" (click)="deleteProduct(item)">Delete</button>
+                &nbsp;
+                <button class="btn btn-warning" (click)="editProduct(item)">Edit</button>
             </td>
         </tr>
         <tr>

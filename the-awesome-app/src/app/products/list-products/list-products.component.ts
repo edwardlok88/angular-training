@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Product } from '../../model/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-products',
@@ -14,7 +15,7 @@ export class ListProductsComponent {
   public searchKey: string = "";
   private url: string = "http://localhost:9000/products";
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     //subscribe to observable
     httpClient.get<Array<Product>>(this.url)
       .subscribe({
@@ -51,5 +52,9 @@ export class ListProductsComponent {
           alert("Failed to delete Product")
           }
       });
+  }
+
+  editProduct(product: Product) {
+    this.router.navigate(["/products", product.id]);
   }
 }
