@@ -6,9 +6,12 @@ import { ViewCartComponent } from './view-cart/view-cart.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: "gadgets", component: MainComponent},
-  {path: "store", component: StoreComponent},
-  {path: "view-cart", component: ViewCartComponent}
+  {
+    path: "gadgets", component: MainComponent, children: [
+      { path: "store", component: StoreComponent },
+      { path: "viewcart", component: ViewCartComponent }
+    ]
+  }
 ]
 
 @NgModule({
