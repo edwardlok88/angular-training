@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
+import { CartItem } from '../model/cartitem';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -11,6 +12,7 @@ import { firstValueFrom } from 'rxjs';
 export class GadgetsService {
 
   private url: string;
+  private cart: Array<CartItem> = [];
 
   constructor(private httpClient: HttpClient) {
     this.url = "http://localhost:9000/products";
@@ -41,5 +43,15 @@ export class GadgetsService {
     return firstValueFrom(this.httpClient.get<Array<Product>>(this.url));
   }
 
-  
+  getProducts() : Observable<Array<Product>> {
+    return this.httpClient.get<Array<Product>>(this.url);
+  }
+
+  addToCart(cartItem: CartItem): void {
+    this.cart.push(cartItem);
+  }
+
+  getCart(): Array<CartItem> {
+    return [...this.cart];
+  }
 }

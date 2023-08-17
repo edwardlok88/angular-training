@@ -1,1 +1,15 @@
-<p>store works!</p>
+<h4>Gadget Store</h4>
+
+<div class="card" *ngFor="let item of products; even as even; odd as odd">
+    <div class="card-header" [ngClass]="{'bg-success': odd, 'bg-warning': even}">
+        {{item.name}}
+    </div>
+    <div class="card-body">
+        <p>Description: {{item.description}}</p>
+        <p>Price: {{item.price}}</p>
+    </div>
+    <div class="card-footer">
+        <input  class="form-control" style="width: 175px" type="number" placeholder="Quantity" #qty /> &nbsp;
+        <button class="btn btn-primary" (click)="add(item, qty.value)">Add to Cart</button>
+    </div>
+</div>
