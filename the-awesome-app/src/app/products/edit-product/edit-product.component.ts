@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Product } from 'src/app/model/product';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-edit-product',
@@ -13,7 +14,7 @@ export class EditProductComponent {
 
   public productId: number = 0;
   public product: Product = new Product();
-  private url = "http://localhost:9000/products/"
+  private url = environment.productsUrl
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private location: Location) {
     this.productId = activatedRoute.snapshot.params["id"];

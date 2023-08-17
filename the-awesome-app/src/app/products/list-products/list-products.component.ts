@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Product } from '../../model/product';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-products',
@@ -13,7 +14,7 @@ export class ListProductsComponent {
   public data: Array<Product> = [];
   public nProduct: Product = new Product();
   public searchKey: string = "";
-  private url: string = "http://localhost:9000/products";
+  private url: string = environment.productsUrl;
 
   constructor(private httpClient: HttpClient, private router: Router) {
     //subscribe to observable
@@ -55,6 +56,7 @@ export class ListProductsComponent {
   }
 
   editProduct(product: Product) {
+    //url navigation
     this.router.navigate(["/products", product.id]);
   }
 }

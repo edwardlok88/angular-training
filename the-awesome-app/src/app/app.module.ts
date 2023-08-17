@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { UserService } from './services/user-service';
 import { UserServiceImpl } from './services/user-service-impl';
+import { AppSharedModule } from './app-shared/app-shared.module';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -43,7 +44,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     GadgetsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppSharedModule
   ],
   //singleton service provider
   providers: [{provide: UserService, useClass: UserServiceImpl}],

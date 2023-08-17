@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../model/product';
-import { Observable, firstValueFrom } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, firstValueFrom } from 'rxjs';
 import { CartItem } from '../model/cartitem';
+import { environment } from '../../environments/environment';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -13,9 +14,12 @@ export class GadgetsService {
 
   private url: string;
   private cart: Array<CartItem> = [];
+  //public subject: Subject<Array<CartItem>> = new Subject();// subject
+  public subject: BehaviorSubject<Array<CartItem>> = new BehaviorSubject<Array<CartItem>>([]); //behaviour subject
 
+  //Represents the cart and notifies when the cart changes with new updated cart;
   constructor(private httpClient: HttpClient) {
-    this.url = "http://localhost:9000/products";
+    this.url = environment.productsUrl;
   }
 
   getVersion() {
@@ -49,6 +53,9 @@ export class GadgetsService {
 
   addToCart(cartItem: CartItem): void {
     this.cart.push(cartItem);
+
+    //raise notification(publish)
+    this.subject.next(this.cart);
   }
 
   getCart(): Array<CartItem> {

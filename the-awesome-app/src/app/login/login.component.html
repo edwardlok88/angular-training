@@ -1,5 +1,7 @@
 <h4>Login</h4>
 
+<app-alert *ngIf="showMessage" [title]="messageTitle" [message]="message"></app-alert>
+
 <form [formGroup]="loginFormGroup">
     <div class="form-group">
         <label>User Name</label>

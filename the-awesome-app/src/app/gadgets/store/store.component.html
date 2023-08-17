@@ -1,5 +1,9 @@
 <h4>Gadget Store</h4>
 
+<div style="border: 2px blue; margin: 7px; padding: 7px;">
+    <app-view-cart></app-view-cart>
+</div>
+
 <div class="card" *ngFor="let item of products; even as even; odd as odd">
     <div class="card-header" [ngClass]="{'bg-success': odd, 'bg-warning': even}">
         {{item.name}}

@@ -10,8 +10,8 @@ import { AuthGuardFunction, AuthGuardService } from '../services/auth-guard.serv
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
-  {path: "products", component: ListProductsComponent, canActivate: [AuthGuardFunction]},
-  {path: "products/:id", component: EditProductComponent, canActivate: [AuthGuardFunction]}
+  { path: "products", component: ListProductsComponent, canActivate: [AuthGuardFunction] },
+  { path: "products/:id", component: EditProductComponent, canActivate: [AuthGuardFunction] }
 ]
 
 @NgModule({
@@ -26,7 +26,10 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ListProductsComponent]
+  exports: [
+    //is not necessary because product use url navigation
+    //ListProductsComponent
+  ]
 })
 export class ProductsModule {
 
