@@ -17,6 +17,7 @@ export class LoginComponent {
   private url: string = environment.loginUrl;
   public messageTitle: string = "";
   public message: string = "";
+  public messageSeverity: string = "info";
   public showMessage: boolean = false;
 
   constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
@@ -43,6 +44,7 @@ export class LoginComponent {
             this.showMessage = true;
             this.messageTitle = "Server Error";
             this.message = "Invalid credentials";
+            this.messageSeverity = "error";
             this.userService.setUserDetails(new User());
           }
         })
@@ -51,6 +53,7 @@ export class LoginComponent {
       this.showMessage = true;
       this.messageTitle = "User Error";
       this.message = "Please enter your credentials";
+      this.messageSeverity = "error";
     }
   }
 
