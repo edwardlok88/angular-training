@@ -4,6 +4,8 @@ import { MainComponent } from './main/main.component';
 import { StoreComponent } from './store/store.component';
 import { ViewCartComponent } from './view-cart/view-cart.component';
 import { RouterModule, Routes } from '@angular/router';
+import { GadgetsService } from './gadgets.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -22,7 +24,12 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
+  ],
+  providers: [
+    //{provide: GadgetsService, useClass: GadgetsService}
+    GadgetsService
   ]
 })
 export class GadgetsModule { }
