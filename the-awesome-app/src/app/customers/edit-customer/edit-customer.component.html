@@ -1,0 +1,23 @@
+<p>Edit Customer</p>
+
+<!-- FormGroup -->
+<!-- # is a template variable -->
+<form #form #formGroup="ngForm">
+    <div class="form-group">
+        <label>Name</label>
+        <!-- FormControl(provided we are using ngmodel) -->
+        <!-- need to provide unique name for FormControl-->
+        <input name="productName" class="form-control" placeholder="Name"  [(ngModel)]="customer.name" required #nameControl="ngModel"/>
+        <!-- use ngIf handle to change element attributes-->
+        <div *ngIf="nameControl.invalid" class="alert alert-danger">The field is required</div>
+    </div>
+    <div class="form-group">
+        <label>City</label>
+        <!-- FormControl -->
+        <input name="productDesc" class="form-control" placeholder="Description"  [(ngModel)]="customer.location"/>
+    </div>
+    <br/>
+    <div class="form-group">
+        <button class="btn btn-success" (click)="saveEdit()" [disabled]="formGroup.pristine || formGroup.invalid">Save</button>
+    </div>
+</form>

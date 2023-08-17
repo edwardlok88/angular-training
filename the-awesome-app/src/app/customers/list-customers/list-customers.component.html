@@ -1,0 +1,36 @@
+<h4>List customers</h4>
+
+<!-- <div>
+    <input type="search" placeholder="Search Products" [(ngModel)]="searchKey"/>
+</div>
+<p *ngIf="searchKey">
+    Search results for {{searchKey}}
+</p> -->
+<table>
+    <thead>
+        <tr>
+            <th>Index</th>
+            <th>Customer Id</th>
+            <th>Name</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Iterate over data and create tr for each product -->
+        <!-- <tr *ngFor="let item of data | productFilter: searchKey; index as i; even as even; odd as odd" -->
+        <tr *ngFor="let item of data; index as i; even as even; odd as odd"
+            [ngClass]="{oddCls: odd, evenCls: even}">
+            <td>{{i}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name | uppercase}}</td>
+            <td>{{item.location}}</td>
+            <td>
+                <button class="btn btn-warning" (click)="editCustomer(item)">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="isShowEdit">
+    <app-edit-customer [customer]="selectedCustomer" (customerUpdated)="hideEdit()"></app-edit-customer>
+</div>

@@ -16,6 +16,7 @@ import { SearchComponent } from './search/search.component';
 import { UserService } from './services/user-service';
 import { UserServiceImpl } from './services/user-service-impl';
 import { AppSharedModule } from './app-shared/app-shared.module';
+import { CustomersModule } from './customers/customers.module'
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -45,7 +46,8 @@ const routes: Routes = [
     GadgetsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppSharedModule
+    AppSharedModule,
+    CustomersModule
   ],
   //singleton service provider
   providers: [{provide: UserService, useClass: UserServiceImpl}],
