@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-alert',
@@ -7,9 +7,17 @@ import { Component, Input } from '@angular/core';
 })
 export class AlertComponent {
   @Input()
-  title: string = "Title";
+  title: string = "Title"; // property binding
   @Input()
-  message: string = "";
+  message: string = ""; // property binding
   @Input()
-  severity: string = "info"; // info, success, warning, error
+  severity: string = "info"; // roperty binding - info, success, warning, error
+  @Output()
+  closed: EventEmitter<void> = new EventEmitter(); // event binding - function call name
+
+  close() {
+    if (this.closed) {
+      this.closed.emit();
+    }
+  }
 }

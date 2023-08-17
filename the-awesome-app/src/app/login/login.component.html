@@ -1,6 +1,6 @@
 <h4>Login</h4>
 
-<app-alert *ngIf="showMessage" [title]="messageTitle" [message]="message"></app-alert>
+<app-alert *ngIf="showMessage" [title]="messageTitle" [message]="message" (closed)="hideMessage()"></app-alert>
 
 <form [formGroup]="loginFormGroup">
     <div class="form-group">

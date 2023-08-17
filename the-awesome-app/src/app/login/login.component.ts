@@ -54,4 +54,8 @@ export class LoginComponent {
     }
   }
 
+  hideMessage() {
+    this.showMessage = false;
+  }
+
 }
