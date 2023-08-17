@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterContentInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Customer } from 'src/app/model/customer';
-import { environment } from 'src/environments/environment';
+import { Customer } from '../../../app/model/customer';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-list-customers',
@@ -13,6 +13,7 @@ export class ListCustomersComponent {
   public data: Array<Customer> = [];
   public searchKey: string = "";
   public isShowEdit: boolean = false;
+  public nCustomer: Customer = new Customer();
   public selectedCustomer: Customer = new Customer();
   private url: string = environment.customersUrl;
 
@@ -28,10 +29,12 @@ export class ListCustomersComponent {
 
   editCustomer(customer: Customer) {
     this.isShowEdit = true;
-    this.selectedCustomer = customer;
+    this.nCustomer = customer;
+    this.selectedCustomer = {...customer}; //spread operator to avoid changing referenced memory value
   }
 
   hideEdit() {
     this.isShowEdit = false;
+    window.location.reload();
   }
 }

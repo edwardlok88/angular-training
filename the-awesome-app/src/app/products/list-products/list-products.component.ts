@@ -15,7 +15,7 @@ export class ListProductsComponent {
   public data: Array<Product> = [];
   public nProduct: Product = new Product();
   public searchKey: string = "";
-  private url: string = environment.productsUrl;
+  private url: string = environment.secureProductsUrl;
 
   constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
 

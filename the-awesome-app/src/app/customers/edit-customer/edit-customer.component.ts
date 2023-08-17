@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { Customer } from '../../../app/model/customer';
 import { environment } from '../../../environments/environment';
 
@@ -18,7 +17,7 @@ export class EditCustomerComponent {
   @Output()
   customerUpdated: EventEmitter<void> = new EventEmitter(); // event binding - function call name
 
-  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private location: Location) {
+  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {
   }
 
   saveEdit() {
@@ -27,7 +26,6 @@ export class EditCustomerComponent {
       .subscribe({
         next: () => {
           alert("Customer updated");
-          this.customer = new Customer();
           this.customerUpdated.emit();
         },
         error: () => {

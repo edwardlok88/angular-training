@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Product } from 'src/app/model/product';
+import { Product } from '../../../app/model/product';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -18,7 +18,7 @@ export class EditProductComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private location: Location) {
     this.productId = activatedRoute.snapshot.params["id"];
-    const url = this.url + this.productId;
+    const url = this.url + "/"+ this.productId;
     httpClient.get(url)
               .subscribe({
                 next: (data => {
@@ -35,7 +35,7 @@ export class EditProductComponent {
   }
 
   saveEdit() {
-    const url = this.url + this.productId;
+    const url = this.url + "/"+ this.productId;
     this.httpClient.put(url, this.product)
       .subscribe({
         next: () => {
