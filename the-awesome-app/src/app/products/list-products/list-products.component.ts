@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Product } from '../../model/product';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/services/user-service';
 
 @Component({
   selector: 'app-list-products',
@@ -16,9 +17,13 @@ export class ListProductsComponent {
   public searchKey: string = "";
   private url: string = environment.productsUrl;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
+
+    const accessToken = userService.getAccessToken();
+    const headers = {Authorization: `Bearer ${accessToken}`};
+
     //subscribe to observable
-    httpClient.get<Array<Product>>(this.url)
+    httpClient.get<Array<Product>>(this.url, {headers})
       .subscribe({
         next: (data) => {console.log("next", data); this.data = data},
         error: (error) => {console.log("error", error)},
