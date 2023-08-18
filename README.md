@@ -380,3 +380,9 @@ import one from "./one.js"; //default import
 ### PrimeNG
 
 ### Angular Material
+
+## npm install
+
+```npm
+npm i serve -g
+```
