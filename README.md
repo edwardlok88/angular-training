@@ -305,7 +305,19 @@ import one from "./one.js"; //default import
 
 ### Change Detection Strategies
 
-### Component Lifecycle Hooks
+[source code](the-awesome-app/src/app/login/login.component.ts#L13)
+
+``` Typescript
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.Emulated
+})
+```
+
+### Component Lifecycle Hooks 2
 
 ## Model-driven Forms (Reactive Forms)
 
