@@ -32,7 +32,7 @@ console.log("user", user);
 
 ### Scoping using Let and Const Keywords
 
-[source code](typescript/scopes.ts)
+[source code](typescript/scopes.js)
 
 ```
 console.log("x", x); //undefined - Hoisting
@@ -70,7 +70,13 @@ export interface Vehicle {
 
     decrementSpeed(value: number): void;
 }
+```
 
+### Classes & Inheritance
+
+[source code](typescript/vehicle.ts)
+
+```
 export class Car implements Vehicle{
 
     name: string;
@@ -94,6 +100,7 @@ export class Car implements Vehicle{
     }
 
 }
+
 var vehicle: Vehicle = new Car();
 console.log("vehicle", vehicle);
 vehicle.decrementSpeed(30);
@@ -111,11 +118,37 @@ vehicle.decrementSpeed(30);
 console.log("vehicle2", vehicle2);
 ```
 
-### Classes & Inheritance
-
 ### ES Modules
 
+[tsconfig.json](typescript/tsconfig.json)
+
+```
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "outDir": "build",
+        "noEmitOnError": true
+    }
+}
+```
+
 ### Arrow Functions
+
+[code](typescript/functions.ts)
+
+```
+//arrow function
+let calc = (x: number, y: number) => {
+    return x + y;
+}
+
+console.log("calc", add(10, 20));
+
+calc = (x: number, y: number) => x * y;
+calc(20, 30);
+
+console.log("calc", add(10, 20));
+```
 
 ### Dynamic Module loading
 

@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
   public isFormValid: boolean = false;
   public cityOptions: string[];
 
-  constructor() {
+  //inject async validators
+  constructor(private appValidators: AppValidators) {
 
     this.cityOptions = new Array<string>();
     this.cityOptions.push("Mumbai");
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit {
     this.cityOptions.push("Delhi");
 
     this.formGroup = new FormGroup({
-      name: new FormControl("", [Validators.required, AppValidators.forbiddenValidator(["admin", "manager"])]),
+      //parameter: 2nd->sync validators, 3rd -> async validators
+      name: new FormControl("", [Validators.required, AppValidators.forbiddenValidator(["admin", "manager"])], [appValidators.checkUniqueness()]),
       pwd: new FormControl("", [Validators.required], []),
       mobile: new FormControl("", [AppValidators.mobileValidator], []),
       city: new FormControl("", [], []),

@@ -245,6 +245,26 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get checkname",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/checkname/abc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"checkname",
+						"abc"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
