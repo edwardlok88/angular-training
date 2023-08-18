@@ -6,7 +6,7 @@
 
 [source code](typescript/hello.ts)
 
-```
+```typescript
 console.log("Hello Typescript12345");
 //1 - Type Inference
 var x = 10;
@@ -34,7 +34,7 @@ console.log("user", user);
 
 [source code](typescript/scopes.js)
 
-```
+```javascript
 console.log("x", x); //undefined - Hoisting
 let x = 10;
 console.log("x", x); //10
@@ -61,7 +61,7 @@ console.log("App over"); // App over
 
 [source code](typescript/vehicle.ts)
 
-```
+```typescript
 export interface Vehicle {
 
     name: string;
@@ -76,7 +76,7 @@ export interface Vehicle {
 
 [source code](typescript/vehicle.ts)
 
-```
+```typescript
 export class Car implements Vehicle{
 
     name: string;
@@ -122,7 +122,7 @@ console.log("vehicle2", vehicle2);
 
 [tsconfig.json](typescript/tsconfig.json)
 
-```
+```json
 {
     "compilerOptions": {
         "target": "ES6",
@@ -134,9 +134,9 @@ console.log("vehicle2", vehicle2);
 
 ### Arrow Functions
 
-[code](typescript/functions.ts)
+[source code](typescript/functions.ts)
 
-```
+```typescript
 //arrow function
 let calc = (x: number, y: number) => {
     return x + y;
@@ -151,6 +151,13 @@ console.log("calc", add(10, 20));
 ```
 
 ### Dynamic Module loading
+
+[source code](typescript/two.js)
+
+```javascript
+import {add, multiply} from "./one.js"; //named import
+import one from "./one.js"; //default import
+```
 
 ## Angular CLI
 
