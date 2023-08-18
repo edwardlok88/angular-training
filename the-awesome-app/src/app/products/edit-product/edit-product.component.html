@@ -9,14 +9,18 @@
         <label>Name</label>
         <!-- FormControl(provided we are using ngmodel) -->
         <!-- need to provide unique name for FormControl-->
-        <input name="productName" class="form-control" placeholder="Name"  [(ngModel)]="product.name" required #nameControl="ngModel"/>
+        <!-- added custom directive appForbiddenValidator -->
+        <input name="productName" class="form-control" placeholder="Name" [(ngModel)]="product.name" required
+            #nameControl="ngModel" appForbiddenValidator="abc, xyz" />
         <!-- use ngIf handle to change element attributes-->
-        <div *ngIf="nameControl.invalid" class="alert alert-danger">The field is required</div>
+        <div *ngIf="nameControl.hasError('required')" class="alert alert-danger">The field is required</div>
+        <div *ngIf="nameControl.hasError('forbidden')" class="alert alert-danger">The name is forbidden</div>
     </div>
     <div class="form-group">
         <label>Price</label>
         <!-- FormControl -->
-        <input name="productPrice" type="number" class="form-control" placeholder="Price"  [(ngModel)]="product.price" required min="100" #priceControl="ngModel"/>
+        <input name="productPrice" type="number" class="form-control" placeholder="Price" [(ngModel)]="product.price"
+            required min="100" #priceControl="ngModel" />
         <!-- use hasError to access specific errors -->
         <div *ngIf="priceControl.hasError('required')" class="alert alert-danger">The field is required</div>
         <div *ngIf="priceControl.hasError('min')" class="alert alert-danger">The field value should be 100 or more</div>
@@ -24,11 +28,12 @@
     <div class="form-group">
         <label>Description</label>
         <!-- FormControl -->
-        <input name="productDesc" class="form-control" placeholder="Description"  [(ngModel)]="product.description"/>
+        <input name="productDesc" class="form-control" placeholder="Description" [(ngModel)]="product.description" />
     </div>
-    <br/>
+    <br />
     <div class="form-group">
-        <button class="btn btn-success" (click)="saveEdit()" [disabled]="formGroup.pristine || formGroup.invalid">Save</button>
+        <button class="btn btn-success" (click)="saveEdit()"
+            [disabled]="formGroup.pristine || formGroup.invalid">Save</button>
         &nbsp;
         <button class="btn btn-info" (click)="cancelEdit()">Cancel</button>
     </div>

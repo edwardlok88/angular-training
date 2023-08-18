@@ -7,6 +7,7 @@ import { ProductFilterPipe } from './product-filter.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { AuthGuardFunction, AuthGuardService } from '../services/auth-guard.service';
+import { AppSharedModule } from '../app-shared/app-shared.module';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AppSharedModule
   ],
   exports: [
     //is not necessary because product use url navigation
