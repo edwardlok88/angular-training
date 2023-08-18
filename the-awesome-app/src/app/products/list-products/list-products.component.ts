@@ -23,7 +23,9 @@ export class ListProductsComponent {
     const headers = {Authorization: `Bearer ${accessToken}`};
 
     //subscribe to observable
-    httpClient.get<Array<Product>>(this.url, {headers})
+    // httpClient.get<Array<Product>>(this.url, {headers})
+    //handle by http interceptor
+    httpClient.get<Array<Product>>(this.url, {})
       .subscribe({
         next: (data) => {console.log("next", data); this.data = data},
         error: (error) => {console.log("error", error)},

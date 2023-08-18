@@ -11,12 +11,13 @@ import { ViewNotFoundComponent } from './view-not-found/view-not-found.component
 import { GadgetsModule } from './gadgets/gadgets.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { UserService } from './services/user-service';
 import { UserServiceImpl } from './services/user-service-impl';
 import { AppSharedModule } from './app-shared/app-shared.module';
 import { CustomersModule } from './customers/customers.module'
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -50,7 +51,10 @@ const routes: Routes = [
     CustomersModule
   ],
   //singleton service provider
-  providers: [{provide: UserService, useClass: UserServiceImpl}],
+  providers: [
+    {provide: UserService, useClass: UserServiceImpl},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
