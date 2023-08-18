@@ -55,5 +55,6 @@ package-lock.json
 
 # build folder and files
 build/*
+build\
 /build
 /build/
