@@ -18,6 +18,7 @@ import { UserServiceImpl } from './services/user-service-impl';
 import { AppSharedModule } from './app-shared/app-shared.module';
 import { CustomersModule } from './customers/customers.module'
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { RegisterComponent } from './register/register.component';
 
 //Defined the router-view (component) mapping
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "databinding", component: DataBindingComponent},
   {path: "login", component: LoginComponent},
   {path: "search", component: SearchComponent},
+  {path: "register", component: RegisterComponent},
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "**", component: ViewNotFoundComponent}
 ]
@@ -37,7 +39,8 @@ const routes: Routes = [
     DataBindingComponent,
     ViewNotFoundComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
