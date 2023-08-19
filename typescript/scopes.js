@@ -1,7 +1,10 @@
 
 console.log("x", x); //undefined - Hoisting
+console.log("z", z); //undefined - Hoisting
 let x = 10;
+const z = 20;
 console.log("x", x); //10
+console.log("z", z); //20
 
 var y;
 console.log("y", y); //undefined
